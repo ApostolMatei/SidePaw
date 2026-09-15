@@ -1,0 +1,503 @@
+/* Critter rig animations. All pivots are in view-box units (160×130, ground y=122). */
+
+.pet-svg {
+  display: block;
+  overflow: visible;
+}
+
+.pet-svg g {
+  transform-box: view-box;
+}
+
+.critter {
+  transform-origin: 78px 122px;
+  animation: breathe 3.2s ease-in-out infinite;
+}
+
+.shadow {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 0.2s;
+}
+
+.tail {
+  animation: sway 3s ease-in-out infinite;
+}
+
+.head {
+  animation: nod 6s ease-in-out infinite;
+}
+
+.ear-r {
+  animation: twitch 5.5s ease-in-out infinite;
+}
+
+.ear-l {
+  animation: twitch 7.3s ease-in-out 2s infinite;
+}
+
+.pet-svg .eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: blink 4.6s infinite;
+}
+
+.look {
+  animation: look 9s ease-in-out infinite;
+}
+
+.bow {
+  animation: nod 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(0.992, 1.028);
+  }
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-12deg);
+  }
+}
+
+@keyframes nod {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-2.5deg);
+  }
+}
+
+@keyframes twitch {
+  0%,
+  78%,
+  86%,
+  100% {
+    transform: rotate(0);
+  }
+  81% {
+    transform: rotate(-16deg);
+  }
+  83% {
+    transform: rotate(6deg);
+  }
+}
+
+@keyframes blink {
+  0%,
+  93%,
+  100% {
+    transform: scaleY(1);
+  }
+  95.5% {
+    transform: scaleY(0.08);
+  }
+}
+
+@keyframes look {
+  0%,
+  30%,
+  100% {
+    transform: translateX(0);
+  }
+  36%,
+  52% {
+    transform: translateX(2px);
+  }
+  58%,
+  74% {
+    transform: translate(-1.5px, 0.5px);
+  }
+  80% {
+    transform: translateX(0);
+  }
+}
+
+/* ---------- walk ---------- */
+.walk .critter {
+  animation: trot 0.36s ease-in-out infinite;
+}
+
+.walk .leg-a {
+  animation: step 0.36s ease-in-out infinite;
+}
+
+.walk .leg-b {
+  animation: step 0.36s ease-in-out infinite reverse;
+}
+
+.walk .arm {
+  animation-duration: 0.72s;
+}
+
+.walk .head {
+  animation: bob 0.36s ease-in-out infinite;
+}
+
+.walk .tail {
+  animation: sway 0.72s ease-in-out infinite;
+}
+
+.walk .ear {
+  animation: flop 0.36s ease-in-out infinite;
+}
+
+@keyframes trot {
+  0%,
+  100% {
+    transform: translateY(0) scale(1.01, 0.99);
+  }
+  50% {
+    transform: translateY(-3.5px) scale(0.99, 1.02);
+  }
+}
+
+@keyframes step {
+  0%,
+  100% {
+    transform: rotate(24deg);
+  }
+  50% {
+    transform: rotate(-24deg);
+  }
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(1deg);
+  }
+  50% {
+    transform: translateY(1.5px) rotate(-2deg);
+  }
+}
+
+@keyframes flop {
+  50% {
+    transform: rotate(-7deg);
+  }
+}
+
+/* ---------- sleep ---------- */
+.sleep .critter {
+  animation: snooze 3.6s ease-in-out infinite;
+}
+
+.sleep .head {
+  animation: none;
+  transform: translate(3px, 10px) rotate(12deg);
+  transition: transform 0.6s ease;
+}
+
+.sleep .tail {
+  animation: none;
+  transform: rotate(-38deg) translateY(4px);
+  transition: transform 0.6s ease;
+}
+
+.sleep .ear {
+  animation: none;
+  transform: rotate(-10deg);
+}
+
+.sleep .leg {
+  transform: scaleY(0.55);
+}
+
+@keyframes snooze {
+  0%,
+  100% {
+    transform: translateY(6px) scale(1.04, 0.9);
+  }
+  50% {
+    transform: translateY(6px) scale(1.02, 0.95);
+  }
+}
+
+/* ---------- happy ---------- */
+.happy .critter {
+  animation: hop 0.56s cubic-bezier(0.3, 0, 0.4, 1) infinite;
+}
+
+.happy .tail {
+  animation: sway 0.28s ease-in-out infinite;
+}
+
+.happy .head {
+  animation: wiggle 0.56s ease-in-out infinite;
+}
+
+.happy .ear {
+  animation: flop 0.28s ease-in-out infinite;
+}
+
+.happy .blush ellipse {
+  opacity: 0.7;
+}
+
+@keyframes hop {
+  0%,
+  100% {
+    transform: translateY(0) scale(1.08, 0.9);
+  }
+  35% {
+    transform: translateY(-16px) scale(0.94, 1.08);
+  }
+  55% {
+    transform: translateY(-14px) scale(1, 1);
+  }
+  85% {
+    transform: translateY(0) scale(1.06, 0.93);
+  }
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+/* ---------- eat ---------- */
+.eat .head {
+  animation: nom 0.46s ease-in-out infinite;
+}
+
+.eat .tail {
+  animation: sway 1s ease-in-out infinite;
+}
+
+.chew {
+  transform-box: fill-box !important;
+  transform-origin: center;
+  animation: chew 0.46s ease-in-out infinite;
+}
+
+.prop {
+  animation: pop-in 0.25s cubic-bezier(0.3, 1.6, 0.5, 1);
+  transform-origin: 137px 122px;
+}
+
+@keyframes nom {
+  0%,
+  100% {
+    transform: translate(4px, 9px) rotate(15deg);
+  }
+  50% {
+    transform: translate(4px, 6px) rotate(11deg);
+  }
+}
+
+@keyframes chew {
+  50% {
+    transform: scaleY(0.35);
+  }
+}
+
+@keyframes pop-in {
+  from {
+    transform: scale(0);
+  }
+}
+
+/* ---------- drag / fall ---------- */
+.drag .critter {
+  transform-origin: 90px 40px;
+  animation: dangle 1.1s ease-in-out infinite;
+}
+
+.drag .leg,
+.fall .leg {
+  animation: paddle 0.5s ease-in-out infinite alternate;
+}
+
+.drag .leg-b,
+.fall .leg-b {
+  animation-direction: alternate-reverse;
+}
+
+.drag .tail {
+  animation: sway 0.5s ease-in-out infinite;
+}
+
+.fall .critter {
+  animation: none;
+  transform: scale(0.93, 1.1);
+}
+
+.fall .ear {
+  animation: none;
+  transform: rotate(-18deg);
+}
+
+.drag .shadow,
+.fall .shadow {
+  opacity: 0;
+}
+
+@keyframes dangle {
+  0%,
+  100% {
+    transform: rotate(-7deg) scaleY(1.05);
+  }
+  50% {
+    transform: rotate(7deg) scaleY(1.05);
+  }
+}
+
+@keyframes paddle {
+  from {
+    transform: rotate(-16deg);
+  }
+  to {
+    transform: rotate(16deg);
+  }
+}
+
+/* ---------- dance A: twist ---------- */
+.dance-a .critter {
+  animation: twist 0.5s ease-in-out infinite;
+}
+.dance-a .head {
+  animation: headbang 0.25s ease-in-out infinite alternate;
+}
+.dance-a .leg-a {
+  animation: step 0.25s ease-in-out infinite;
+}
+.dance-a .leg-b {
+  animation: step 0.25s ease-in-out infinite reverse;
+}
+.dance-a .tail,
+.dance-b .tail {
+  animation: sway 0.25s ease-in-out infinite;
+}
+.dance-a .ear,
+.dance-b .ear {
+  animation: flop 0.25s ease-in-out infinite;
+}
+.dance-a .gorilla .arm {
+  animation: arms-up 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes twist {
+  0%,
+  100% {
+    transform: rotate(-8deg) translateY(0) scale(1.04, 0.96);
+  }
+  50% {
+    transform: rotate(8deg) translateY(-7px) scale(0.97, 1.04);
+  }
+}
+
+@keyframes headbang {
+  from {
+    transform: rotate(-8deg);
+  }
+  to {
+    transform: translateY(2px) rotate(7deg);
+  }
+}
+
+@keyframes arms-up {
+  from {
+    transform: rotate(-160deg);
+  }
+  to {
+    transform: rotate(-115deg);
+  }
+}
+
+/* ---------- dance B: jump with a spin ---------- */
+.dance-b .critter {
+  animation: spin-jump 1.05s cubic-bezier(0.3, 0, 0.4, 1) infinite;
+}
+.dance-b .head {
+  animation: wiggle 0.52s ease-in-out infinite;
+}
+.dance-b .leg,
+.dance-b .gorilla .arm {
+  animation: paddle 0.18s ease-in-out infinite alternate;
+}
+
+@keyframes spin-jump {
+  0%,
+  100% {
+    transform: translateY(0) scale(1.08, 0.9);
+  }
+  20% {
+    transform: translateY(-4px) scale(0.95, 1.06);
+  }
+  45% {
+    transform: translateY(-24px) scale(-1, 1);
+  }
+  70% {
+    transform: translateY(-8px) scale(1, 1);
+  }
+  85% {
+    transform: translateY(0) scale(1.06, 0.93);
+  }
+}
+
+/* ---------- refuse ---------- */
+.no .head {
+  animation: shake 0.42s ease-in-out 3;
+}
+
+@keyframes shake {
+  25% {
+    transform: rotate(-9deg);
+  }
+  75% {
+    transform: rotate(9deg);
+  }
+}
+
+/* ---------- sad (mood, combines with idle/walk) ---------- */
+.sad.idle .critter,
+.sad.walk .critter {
+  animation-duration: 4.5s;
+}
+
+.sad.idle .head {
+  animation: none;
+  transform: translateY(3px) rotate(5deg);
+}
+
+.sad.idle .ear-l,
+.sad.walk .ear-l {
+  animation: none;
+  transform: rotate(-16deg);
+}
+
+.sad.idle .ear-r,
+.sad.walk .ear-r {
+  animation: none;
+  transform: rotate(16deg);
+}
+
+.sad.idle .tail {
+  animation-duration: 7s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pet-svg *,
+  .pet-svg {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
